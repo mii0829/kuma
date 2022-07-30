@@ -1,0 +1,44 @@
+body {
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url('haikei.jpeg');
+}
+
+* {
+    font-family: 'DotGothic16', sans-serif;
+}
+
+
+.card {
+    width: 50%;
+    margin: 0 auto 16px;
+}
+
+.card-wrapper {
+    width: 100%;
+}
+
+.img-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+#page-top {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    font-size: 1.4rem;
+    line-height: 1.2rem;
+    background: #fff;
+    color: #0067A7;
+    /*border: solid 2px #0067A7;*/
+    border-radius: 50%;
+    box-shadow: 0 2px 10px -6px rgba(0,103,167,.5), 0 3px 10px -4px rgba(0,103,167,.2);
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    padding-top: 24px;
+}
