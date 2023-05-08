@@ -1,9 +1,9 @@
 require 'bundler/setup'
 Bundler.require
-require 'sinatra/reloader' if development?
+require 'sinatra/reloader' if development? 
 require 'open-uri'
 require 'sinatra/json'
-require './models/contribution.rb'
+require './models.rb'
 
 before do
     Dotenv.load
@@ -14,14 +14,84 @@ before do
     end
 end
 
+enable :sessions
+
+helpers do
+    def current_user
+        User.find_by(id: session[:user])
+    end
+end
+
 get '/' do
-    @contents = Contribution.all.order('id desc')
-    erb :index
+    erb :sign_in
+end
+
+get '/signup' do
+    erb :sign_up
+end
+
+post '/signup' do
+    # grade_id も追加する
+    user = User.create(
+        name: params[:name],
+        mail: params[:mail],
+        grade_id: params[:grade_id],
+        password: params[:password],
+        password_confirmation: params[:password_confirmation]
+    )
+    if user.persisted?
+        session[:user] = user.id
+        redirect '/'
+    else
+       "ユーザー登録に失敗しました" 
+    end
+end
+
+get '/signin' do
+    erb :sign_in
+end
+
+post '/signin' do
+    user = User.find_by(mail: params[:mail])
+    if user && user.authenticate(params[:password])
+        session[:user] = user.id
+        redirect '/subjects'
+    else
+       "ログインに失敗しました" 
+    end
+end
+
+get '/signout' do
+    session[:user] = nil
+    redirect '/'
+end
+
+get '/subjects' do
+    erb :subjects
+end
+
+post '/subjects' do
+    
+end
+
+@subject_id = 0
+get '/board' do
+    subject_id = params['id']
+    @subject_id = subject_id
+    @subject = Subject.find(subject_id)
+    
+    # データベースから subject_key を使用して教科の情報を取得する
+    # @hoge のようなインスタンス変数に値を代入して、 erb ファイルで表示する
+     @contents = Question.where(subject_id: subject_id).order('id desc')
+     #puts "========================"
+     #puts @contents[0].tags[0].name
+     #puts "========================"
+     
+    erb :board
 end
 
 post '/new' do
-    img_url = ' '
-    img1_url = ' '
+    img_url = ''
     if params[:file]
         img = params[:file]
         tempfile = img[:tempfile]
@@ -29,67 +99,14 @@ post '/new' do
         img_url = upload['url']
     end
     
-    if params[:file1]
-        img1 = params[:file1]
-        tempfile1 = img1[:tempfile]
-        upload1 = Cloudinary::Uploader.upload(tempfile1.path)
-        img1_url = upload1['url']
-    end
-    
-     logger.info "yuruyuru"
-     logger.info img_url
-    logger.info img1_url
-    
-    Contribution.create({
-        name: params[:user_name],
+   question = Question.create({
+        user_id: current_user.id,
         body: params[:body],
-        img: img_url,
-        img1: img1_url,
-        genre: params[:genre],
-        group: params[:group],
-        birth: params[:birth]
+        image: img_url,
+        subject_id: params[:subject_id],
     })
-    redirect '/'
-end
+    question.tags.create(name: params[:tag])
 
-post '/delete/:id' do
-    Contribution.find(params[:id]).destroy
-    redirect '/'
-end
-
-get '/edit/:id' do
-    @content = Contribution.find(params[:id])
-    erb :edit
-end
-
-post '/renew/:id' do
-    img_url = ' '
-    img1_url = ' '
-    if params[:file]
-        img = params[:file]
-        tempfile = img[:tempfile]
-        upload = Cloudinary::Uploader.upload(tempfile.path)
-        img_url = upload['url']
-    end
-    
-    if params[:file1]
-        img1 = params[:file1]
-        tempfile = img1[:tempfile]
-        upload = Cloudinary::Uploader.upload(tempfile.path)
-        img1_url = upload['url']
-    end
-    
-   
-    
-    content = Contribution.find(params[:id])
-    content.update({
-        name: params[:user_name],
-        body: params[:body],
-        genre: params[:genre],
-        group: params[:group],
-        birth: params[:birth],
-        img: img_url,
-        img1: img1_url
-    })
-    redirect '/'
+    link = "/board?id=#{params[:subject_id]}"
+    redirect link
 end

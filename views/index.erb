@@ -2,35 +2,25 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>推し事掲示板</title>
+  <title>掲示板</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
 </head>
+<h1>aaa</h1>
+<% if false%>
 <body>
   <div class="container-fluid">
     <div class="row d-flex justify-content-center">
       <div class="card col-lg-6 m-5">
         <div class="card-body">
           <form action="/new" method="post" enctype="multipart/form-data">
-          <label for="genre-select"></label>
-          <p>ジャンル：
-            <select name="genre" id="genre-select">
-                <option value="">--ジャンルを選ぶ--</option>
-                <option value="K-POP">K-POP</option>
-                <option value="J-POP">J-POP</option>
-                <option value="アニメ">アニメ</option>
-                <option value="俳優">俳優</option>
-                <option value="芸人">芸人</option>
-                <option value="その他">その他</option>
-            </select>
-          </p>
+         
+          
           <p>名前:<input type="text" name="user_name" class="form-control"></p>
-          <p>グループ等:<input type="text" name="group" class="form-control"></p>
-          <p>誕生日:<input type="text" name="birth" class="form-control"></p>
-          <p>一言コメント:<input type="text" name="body" class="form-control"></p>
+         
           <p><input type="file" name="file"></p>
           <p><input type="file" name="file1"></p>
           <p><input type="submit" value="投稿" class="btn btn-dark float-end"></p>
@@ -43,13 +33,12 @@
   <a href="#" id="page-top"><i class="fa-solid fa-arrow-up fa-2xl"></i></a>
 
   <div class="card-wrapper">
-    <% @contents.each do |content| %>
+      <!--% @contents.each do |content| %-->
       <div class="card log-lg-6">
         <div class="card-body">
-          <p><%= content.genre %></p>
+         
           <p><%= content.name %></p>
-           <p><%= content.group %></p>  
-          <p><%= content.birth %></p>
+         
           <p><%= content.body %></p>
           <div class="img-wrapper">
             <% unless content.img.empty? %>
@@ -69,9 +58,9 @@
           <a href="/edit/<%= content.id %>" class="btn float-end">編集</a>
         </div>
       </div>
-    <% end %>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/06d0fec54d.js" crossorigin="anonymous"></script>
+  <% end %>
 </body>
 </html>

@@ -1,44 +1,150 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
 body {
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center center;
-    background-image: url('haikei.jpeg');
+    background-color: #E9D5DE;
 }
 
-* {
-    font-family: 'DotGothic16', sans-serif;
+
+  
+.login{
+    text-align: center;
+    font-size: 30px;
+    /* font-family: ab-countryroad, sans-serif;*/
+    font-style: normal;
+    font-weight: 400;
+    /*font-family: 'Yusei Magic', sans-serif;*/
+   font-family: 'Mochiy Pop One', sans-serif;
+
 }
 
+h1{
+    font-size: 100px;
+    
+    /*-webkit-text-stroke: 2px #FF82FF;*/
+     /*text-stroke: 2px #FF82FF;*/
+      text-stroke: 3px #c3f0ca;
+      -webkit-text-stroke: 3px #c3f0ca;
+    font-family: 'Mochiy Pop One', sans-serif;
+
+}
+
+h2{
+    font-size: 70px;
+   font-family: 'Mochiy Pop One', sans-serif;
+    -webkit-text-stroke: 0.5px #c184ff;
+     text-stroke: 0.5px #c184ff;
+}
+
+.signup{
+    text-align: center;
+    font-size: 30px;
+    /*font-family: ab-countryroad, sans-serif;*/
+    font-style: normal;
+    font-weight: 400;
+   font-family: 'Mochiy Pop One', sans-serif;
+}
+
+.select{
+    text-align: center;
+    font-size: 30px;
+    /*font-family: ab-countryroad, sans-serif;*/
+    font-style: normal;
+    font-weight: 400;
+   font-family: 'Mochiy Pop One', sans-serif;
+}
+
+.login input{
+    font-size: 30px;
+}
+
+.signup input{
+    font-size: 30px;
+}
+.signup select{
+    font-size: 30px;
+}
+.choice{
+    padding: 10px;
+    font-family: 'Mochiy Pop One', sans-serif;
+}
+
+.subject-choice{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    width: 100%;
+    
+}
+.subject-choice div{
+    width: 33%;
+    height: 50vh;
+    
+}
+
+summary{
+    /*font-family: ab-countryroad, sans-serif;*/
+    font-size: 50px;
+   font-family: 'Mochiy Pop One', sans-serif;
+}
+ul{
+    /*font-family: ab-countryroad, sans-serif;*/
+    font-size: 25px;
+   font-family: 'Mochiy Pop One', sans-serif;
+}
+a {
+  color: dimgray;
+  text-decoration: none;
+}
 
 .card {
-    width: 50%;
-    margin: 0 auto 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 900px;
+  background-color: #faf9fa;
+  
+  padding: 15px;
+  border: 2px solid silver;
+  word-wrap: break-word;
+  margin-left: 250px;
 }
 
-.card-wrapper {
-    width: 100%;
+.tag-container {
+  display: flex;
+  gap: 5px;
+   padding-left:0;
 }
 
-.img-wrapper {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+.tag {
+ color: gray;
+ font-size: 20px;
 }
 
-#page-top {
-    position: fixed;
-    right: 10px;
-    bottom: 10px;
-    font-size: 1.4rem;
-    line-height: 1.2rem;
-    background: #fff;
-    color: #0067A7;
-    /*border: solid 2px #0067A7;*/
-    border-radius: 50%;
-    box-shadow: 0 2px 10px -6px rgba(0,103,167,.5), 0 3px 10px -4px rgba(0,103,167,.2);
-    text-align: center;
-    width: 80px;
-    height: 80px;
-    padding-top: 24px;
+.question {
+  font-size: 30px;
+  width: 100%;
+  color: black;
+  font-weight: bold;
+  text-stroke: 1px #d0becf;
+  -webkit-text-stroke: 1px #d0becf;
+}
+
+li{
+    list-style:none;
+}
+
+.title{
+    padding: 40px;
+}
+.form{
+    margin: 30px;
 }

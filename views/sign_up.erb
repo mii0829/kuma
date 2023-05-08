@@ -1,0 +1,36 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+<div>
+    <form action="/signup" method="post">
+        <div>
+            <div class="signup">
+                <h1>Sign Up</h1>
+                <div class="choice">
+                    <input name="mail" placeholder="MAIL" required class="choice"><br>
+                    <input name="name" placeholder="NICKNAME" required class="choice"><br>
+                     <select name="grade_id" required class="choice">
+                        <option value="" >--GRADE--</option>
+                        <option>中学一年</option>
+                        <option>中学二年</option>
+                        <option>中学三年</option>
+                        <option>高校一年</option>
+                        <option>高校二年</option>
+                        <option>高校三年</option>
+                    </select><br>
+                    <input name="password" type="password" placeholder="PASSWORD" required class="choice"><br>
+                    <input name="password_confirmation" type="password" placeholder="PASSWORD AGAIN" required class="choice"><br>
+                </div>
+                <div>
+                    <input type="submit" value="GO">
+                </div>
+                 <div>
+                    <a href="/signin">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--  -->
